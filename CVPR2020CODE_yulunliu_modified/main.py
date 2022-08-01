@@ -767,7 +767,11 @@ with torch.no_grad():
             # pdb.set_trace()
             writer.write(result[i, :, :, :].astype(np.uint8))
             # writer_mask.write(np.transpose(MASK[i, :, :, :]*255.0, (1, 2, 0)).astype(np.uint8))
+            
+            if not os.path.exists('output_yu'):
+                os.makedirs('output_yu')            
 
+            cv2.imwrite('output_yu/' + str(counter).zfill(5) + '.png', result[i, :, :, :].astype(np.uint8))
 
             if not os.path.exists(out_warping_field_path):
                 os.makedirs(out_warping_field_path)
